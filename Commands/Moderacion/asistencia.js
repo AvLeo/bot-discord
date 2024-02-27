@@ -8,6 +8,7 @@ const {
     ActionRowBuilder,
   } = require("discord.js");
 
+  const { createImage } = require('../../Functions/createImage.js')
   const discordID = require('../../discordID.json')
   const { setNewDate } = require('../../Spreedsheets/spreedsheets.js')
   const { format } = require('@formkit/tempo') 
@@ -34,9 +35,8 @@ const {
           .setDescription("Selecciona la comision correspondiente")
           .setRequired(true)
           .addChoices(
-            {name: "A", value: "A"},
-            {name: "B", value: "B"},
-            {name: "C", value: "C"},
+            {name: "T. Mañana", value: "T. Mañana"},
+            {name: "T. Tarde", value: "T. Tarde"},
           )
         ),
     /**
@@ -74,9 +74,13 @@ const {
             break;
           
         }
+
+        const image = await createImage(curso,comision)
+        // const imageBack = createImage()
+
         const embed = new EmbedBuilder()
         .setTitle(`Asistencia para ${curso} | ${fecha}`)
-
+        
         const button = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
             .setCustomId('asistencia')
@@ -84,7 +88,9 @@ const {
             .setStyle(ButtonStyle.Success)
         )
 
-        await channel.send({embeds: [embed], components:[button]})
+        
+
+        await channel.send({embeds: [embed], files:[image], components:[button]})
         await interaction.reply({content:'El mensaje fue enviado correctamente!'})
 
     },
