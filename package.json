@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@formkit/tempo": "^0.0.13",
     "ascii-table": "^0.0.9",
     "canvas": "^2.11.2",
     "discord.js": "^14.14.1",
