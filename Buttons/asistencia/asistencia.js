@@ -14,21 +14,21 @@ module.exports = {
         await interaction.deferReply({ephemeral: true})
         const userID = interaction.user.id
         const curso = interaction.channel.parent.name
-
+        
         switch(curso){
-            case "JAVASCRIPT":
+            case "JavaScript":    
                 await setAsistencia("Javascript", userID)
                 break;
-            case "BASE DE DATOS":
+            case "Base de Datos":    
                 await setAsistencia("Python", userID)
                 break;
-            case "PYTHON":
+            case "Python":    
                 await setAsistencia("Javascript", userID)
                 break;
-            case "C#":
+            case "C#":    
                 await setAsistencia("C#", userID)
                 break;
-            case "UX UI":
+            case "UXUI":    
                 await setAsistencia("UX UI", userID)
                 break;
         }

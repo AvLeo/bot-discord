@@ -67,6 +67,8 @@ async function setIdDiscord(Curso, dni, idDiscord, userName){
             requestBody: { values: nuevosValores }
         });
 
+        console.log('Rol Asigned - Datos cargados en sheet')
+
     }catch(error){
         console.error("SetIdDiscord: Error al leer o actualizar datos:", error);
     }
