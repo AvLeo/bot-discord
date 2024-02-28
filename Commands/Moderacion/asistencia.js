@@ -29,6 +29,9 @@ const {
           {name: "UXUI", value: "UXUI"},
           {name: "Python", value: "Python"},
           {name: "C#", value: "C#"},
+          {name: "React JS", value: "React JS"},
+          {name: "Java", value: "Java"},
+          {name: "IA Python", value: "IA Python"},
         ))
         .addStringOption(option => 
           option.setName('comision')
@@ -72,6 +75,18 @@ const {
           case "C#":
             channel = interaction.guild.channels.cache.get(discordID.channels.c) // ID_CANAL
             await setNewDate("C#", fecha, comision)
+            break;
+          case "React JS":
+            channel = interaction.guild.channels.cache.get(discordID.channels.c) // ID_CANAL
+            await setNewDate("React", fecha, comision)
+            break;
+          case "IA Python":
+            channel = interaction.guild.channels.cache.get(discordID.channels.c) // ID_CANAL
+            await setNewDate("IA Python", fecha, comision)
+            break;
+          case "Java":
+            channel = interaction.guild.channels.cache.get(discordID.channels.c) // ID_CANAL
+            await setNewDate("Java", fecha, comision)
             break;
           
         }
