@@ -45,6 +45,7 @@ const {
      */
     async execute(interaction) {
 
+        interaction.deferReply({ephemeral: true})
         const fecha = format(date, "short", "es")
 
         const curso = interaction.options.getString('curso')
@@ -91,7 +92,7 @@ const {
         
 
         await channel.send({embeds: [embed], files:[image], components:[button]})
-        await interaction.reply({content:'El mensaje fue enviado correctamente!'})
+        await interaction.editReply({content:'El mensaje fue enviado correctamente!', ephemeral: true})
 
     },
   };
