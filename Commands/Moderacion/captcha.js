@@ -23,12 +23,12 @@ const {
         const channel = interaction.options.getChannel('canal') || interaction.channel
 
         const embed = new EmbedBuilder()
-        .setTitle('Verificate aquí')
+        .setTitle("***Términos y condiciones | Escuela de Programación - GC ***\n\n~~-------------------------------------------------------------~~\n\n*Al aceptar términos y condiciones, se te otorgará el rol de Alumno*")
 
         const button = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
             .setCustomId('start')
-            .setLabel('Iniciar captcha')
+            .setLabel('Aceptar términos y condiciones')
             .setStyle(ButtonStyle.Success)
         )
 

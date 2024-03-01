@@ -34,8 +34,17 @@ module.exports = {
             case "C#":
                 valueAsistencia = await setAsistencia("C#", userID)
                 break;
-            case "UX UI":
-                valueAsistencia = await setAsistencia("UX UI", userID)
+            case "UXUI":
+                valueAsistencia = await setAsistencia("UXUI", userID)
+                break;
+            case "Java":
+                valueAsistencia = await setAsistencia("Java", userID)
+                break;
+            case "IA Python":
+                valueAsistencia = await setAsistencia("IA Python", userID)
+                break;
+            case "React JS":
+                valueAsistencia = await setAsistencia("React", userID)
                 break;
         }
 
@@ -43,7 +52,7 @@ module.exports = {
             await interaction.editReply('Asistencia cargada')
             await wait(5_000)
         }else{
-            await interaction.editReply('❎ Error a cargar el presente ❎ | Fuera de la fecha')
+            await interaction.editReply('❎ Error a cargar el presente ❎ \n Fuera de la fecha o no te encontramos en la lista')
             await wait(5_000)
         }
         await interaction.deleteReply()

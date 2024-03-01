@@ -63,16 +63,25 @@ module.exports = {
                 idRolCurso = discordID.role.python
                 break;
             case "ux ui":
-                res = await setIdDiscord("UX UI",dni,userID,userName)
+                res = await setIdDiscord("UXUI",dni,userID,userName)
                 idRolCurso = discordID.role.uxui
+                break;
+            case "java":
+                res = await setIdDiscord("Java",dni,userID,userName)
+                idRolCurso = discordID.role.java
+                break;
+            case "ia python":
+                res = await setIdDiscord("IA Python",dni,userID,userName)
+                idRolCurso = discordID.role.iapython
+                break;
+            case "react js":
+                res = await setIdDiscord("React",dni,userID,userName)
+                idRolCurso = discordID.role.react
                 break;
             default:
                 res = "Curso no encontrado"
         
         }
-        
-        console.log(res)
-        console.log(userName)
 
         if(res === undefined){
           await interaction.member.roles.add(idRolCurso).then(res => console.log("Rol Agregado")).catch(error =>console.log("No se asigno el rol"))

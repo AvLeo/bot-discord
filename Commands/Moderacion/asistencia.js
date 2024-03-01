@@ -77,15 +77,15 @@ const {
             await setNewDate("C#", fecha, comision)
             break;
           case "React JS":
-            channel = interaction.guild.channels.cache.get(discordID.channels.c) // ID_CANAL
+            channel = interaction.guild.channels.cache.get(discordID.channels.react) // ID_CANAL
             await setNewDate("React", fecha, comision)
             break;
           case "IA Python":
-            channel = interaction.guild.channels.cache.get(discordID.channels.c) // ID_CANAL
+            channel = interaction.guild.channels.cache.get(discordID.channels.iapython) // ID_CANAL
             await setNewDate("IA Python", fecha, comision)
             break;
           case "Java":
-            channel = interaction.guild.channels.cache.get(discordID.channels.c) // ID_CANAL
+            channel = interaction.guild.channels.cache.get(discordID.channels.java) // ID_CANAL
             await setNewDate("Java", fecha, comision)
             break;
           

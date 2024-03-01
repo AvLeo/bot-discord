@@ -28,7 +28,7 @@ const {
         const channel = interaction.options.getChannel('channel')
 
         const embed = new EmbedBuilder()
-        .setTitle(`Formulario para asignación de rol según tu curso`)
+        .setTitle("👆🏻 ***Lee con atención el mensaje anterior*** 👆🏻")
 
         const button = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
