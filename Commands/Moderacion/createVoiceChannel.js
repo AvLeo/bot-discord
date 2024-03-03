@@ -4,7 +4,10 @@ const {
     PermissionFlagsBits,
     ChannelType,
     PermissionsBitField,
-    Membe
+    GuildChannelManager,
+    GuildManager,
+    GuildMemberManager,
+    VoiceChannel
 } = require("discord.js");
 const discordID = require('../../discordID.json');
 
@@ -37,7 +40,7 @@ module.exports = {
         await interaction.deferReply({ ephemeral: true });
 
         try {
-            const channelsName = ["Sala A", "Sala B", "Sala C"];
+            const channelsName = ["Sala A", "Sala B", "Sala C","Sala D", "Sala E" ];
             const chosenCategory = interaction.options.getString('channelcourse');
             const guild = interaction.guild;
             const idChannels = []
@@ -48,9 +51,9 @@ module.exports = {
 
             switch (chosenCategory) {
                 case "Javascript":
-                    categoryId = discordID.category.javascript;
+                    categoryId = "1202700618221879296";
                     idRole = discordID.role.javascript
-                    idChannelMain = discordID.voiceChannelMain.javascript
+                    idChannelMain = "1202700619761192960"
                     break;
                 case "Base de Datos":
                     categoryId = discordID.category.basededatos;
@@ -90,52 +93,72 @@ module.exports = {
                     });
             }
 
-            for (let i = 0; i < channelsName.length; i++) {
-                const channel = await guild.channels.create({
-                        name:channelsName[i],
-                        type: ChannelType.GuildVoice,
-                        parent: categoryId,
-                        permissionOverwrites:[
-                            {
-                                id:idRole,
-                                allow:[
-                                    PermissionFlagsBits.SendMessages,
-                                    PermissionFlagsBits.Stream,
-                                    PermissionFlagsBits.ViewChannel,
-                                    PermissionFlagsBits.Speak
-                                ],
-                                deny:[
-                                    PermissionFlagsBits.Connect
-                                ]
-                            },
-                            {
-                                id:"1202619746902609940",
-                                deny:[
-                                    PermissionFlagsBits.ViewChannel,
-                                    PermissionFlagsBits.Connect
-                                ]
-                            }
-                        ]
-                });
-                idChannels.push(channel.id)
+            // Alumnos conectados
+
+            const mainChannel = guild.channels.cache.get(idChannelMain)
+            const cantAlumnos = guild.channels.cache.get(idChannelMain).members.size
+            const alumnosConnected = mainChannel.members
+            let cantidadCanales = 0;
+            
+            if(cantAlumnos === 0) return await interaction.editReply('No puedes crear canales, porque hay 0 alumnos conectados! 🤣')
+            if(cantAlumnos > 0 && cantAlumnos<= 5) cantidadCanales = 1;
+            if(cantAlumnos > 5 && cantAlumnos <= 10) cantidadCanales = 2;
+            if(cantAlumnos > 10 && cantAlumnos <= 20) cantidadCanales = 3;
+            if(cantAlumnos > 20 && cantAlumnos <= 30) cantidadCanales = 4;
+            if(cantAlumnos > 30) cantidadCanales = 5;
+            console.log("Cantidad de alumnos conectados: " + cantAlumnos)
+            console.log("Cantidad de canales a crear: " + cantidadCanales)
+            
+            // Crear canales 
+
+            for (let i = 0; i < cantidadCanales; i++) {
+                const channelName = channelsName[i];
+                const channelsInCategory = guild.channels.cache.filter(channel => channel.parentId === categoryId)
+                const exite = channelsInCategory.find(channel => channel.name.toLowerCase() === channelName.toLowerCase());
+                
+                if(exite){
+                    idChannels.push(exite.id)
+                }else{
+                    const channel = await guild.channels.create({
+                            name:channelsName[i],
+                            type: ChannelType.GuildVoice,
+                            parent: categoryId,
+                            permissionOverwrites:[
+                                {
+                                    id:idRole,
+                                    allow:[
+                                        PermissionFlagsBits.SendMessages,
+                                        PermissionFlagsBits.Stream,
+                                        PermissionFlagsBits.ViewChannel,
+                                        PermissionFlagsBits.Speak
+                                    ],
+                                    deny:[
+                                        PermissionFlagsBits.Connect
+                                    ]
+                                },
+                                {
+                                    id:"1202619746902609940",
+                                    deny:[
+                                        PermissionFlagsBits.ViewChannel,
+                                        PermissionFlagsBits.Connect
+                                    ]
+                                }
+                            ]
+                    });
+                    idChannels.push(channel.id)
+                }
             }
 
             // Separacion de alumnos
-            const mainChannel = guild.channels.cache.get(idChannelMain)
-            const alumnosConnected = mainChannel.members
-            // console.log(alumnosConnected)
-
-            for (let i = 0; i < alumnosConnected.length; i++) {
-                // console.log(userId)
-                // console.log('----')
-                // console.log(member)
-                // console.log('--Channel--')
-                // console.log(guild.channels.cache.get(idChannels[0]))
-                // const user = alumnosConnected[i];
-                // // const channelIndex = userId % idChannels.length;
-                // const channelCache = guild.channels.cache.get(idChannels[0])
-                // console.log(channelCache)
-                // await user.voice.setChannel(channelCache,"Movido por x razon");
+            let index = 0;
+            for (const [memberID, member] of alumnosConnected) {
+                try{
+                    const channelIndex = index % cantidadCanales;
+                    await member.voice.setChannel(idChannels[channelIndex], "Comienza la hora de práctica")
+                    index++
+                }catch(error){
+                    console.error("error en:",error)
+                }
             }
 
 

@@ -1,15 +1,18 @@
 const { Client, GatewayIntentBits, Partials, Collection } = require('discord.js')
 
-const { Guilds, GuildMembers, GuildMessages } = GatewayIntentBits;
+const { Guilds, GuildMembers, GuildMessages, GuildVoiceStates } = GatewayIntentBits;
 const { User, Message, GuildMember, ThreadMember } = Partials;
 
 const client = new Client({
-	intents:[Guilds, GuildMembers, GuildMessages],
+	intents:[Guilds, GuildMembers, GuildMessages, GuildVoiceStates],
 	partials:[User, Message, GuildMember, ThreadMember]
 })
 
 const { loadEvents } = require('./Handlers/eventHandler.js');
 const { loadButtons } = require('./Handlers/buttonHandler.js')
+
+// Escuchar el evento 'voiceStateUpdate' para detectar cambios en los estados de voz de los usuarios
+
 
 
 client.config = require('./config.json');
@@ -19,6 +22,7 @@ client.buttons = new Collection();
 
 loadEvents(client)
 loadButtons(client)
+
 
 require('./Handlers/anti-crash.js')(client)
 
