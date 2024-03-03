@@ -11,10 +11,6 @@ const client = new Client({
 const { loadEvents } = require('./Handlers/eventHandler.js');
 const { loadButtons } = require('./Handlers/buttonHandler.js')
 
-// Escuchar el evento 'voiceStateUpdate' para detectar cambios en los estados de voz de los usuarios
-
-
-
 client.config = require('./config.json');
 client.events = new Collection();
 client.commands = new Collection();
