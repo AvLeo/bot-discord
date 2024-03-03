@@ -6,7 +6,6 @@ const wait = require('node:timers/promises').setTimeout;
 const { setAsistencia } = require('../../Spreedsheets/spreedsheets.js')
 const { format } = require('@formkit/tempo') 
 const date = new Date()
-const { checkNet } = require('../../Network/checkNetwork.js')
 
 module.exports = {
     data : {
@@ -23,7 +22,7 @@ module.exports = {
         
         switch(curso){
             case "JavaScript":
-                await checkNet().then(async res => valueAsistencia = await setAsistencia("Javascript", userID)).catch(error => valueAsistencia = false)
+                valueAsistencia = await setAsistencia("Javascript", userID)
                 break;
             case "Base de Datos":
                 valueAsistencia = await setAsistencia("Python", userID)

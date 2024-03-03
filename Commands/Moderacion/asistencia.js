@@ -97,17 +97,22 @@ const {
         const embed = new EmbedBuilder()
         .setTitle(`Asistencia para ${curso} | ${fecha}`)
         
-        const button = new ActionRowBuilder().addComponents(
-            new ButtonBuilder()
-            .setCustomId('asistencia')
-            .setLabel("Presente")
-            .setStyle(ButtonStyle.Success)
-        )
-
+        const button = new ButtonBuilder()
+        .setCustomId('asistencia')
+        .setLabel("Presente")
+        .setStyle(ButtonStyle.Success)
+        .setDisabled(false)
         
+        const comp = new ActionRowBuilder().addComponents(button)
 
-        await channel.send({embeds: [embed], files:[image], components:[button]})
-        await interaction.editReply({content:'El mensaje fue enviado correctamente!', ephemeral: true})
-
+        const msg  =await channel.send({embeds: [embed], files:[image], components:[comp]})
+        await interaction.editReply({content:'El mensaje fue enviado correctamente! En 30min debería deshabilitarse', ephemeral: true})
+        
+        
+        setTimeout(async () => {
+          button.setDisabled(true)
+          const disabledActionRow = new ActionRowBuilder().addComponents(button);
+          await msg.edit({components: [disabledActionRow]});
+        }, 30 * 60 * 1000);        
     },
   };
