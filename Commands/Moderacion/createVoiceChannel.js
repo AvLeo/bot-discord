@@ -51,9 +51,9 @@ module.exports = {
 
             switch (chosenCategory) {
                 case "Javascript":
-                    categoryId = "1202700618221879296";
+                    categoryId = discordID.category.javascript;
                     idRole = discordID.role.javascript
-                    idChannelMain = "1202700619761192960"
+                    idChannelMain = discordID.voiceChannelMain.javascript
                     break;
                 case "Base de Datos":
                     categoryId = discordID.category.basededatos;
@@ -63,7 +63,7 @@ module.exports = {
                 case "Python":
                     categoryId = discordID.category.python;
                     idRole = discordID.role.python
-                    idChannelMain = discordID.voiceChannelMain.python
+                    idChannelMain = discordID.category.python
                     break;
                 case "IA Python":
                     categoryId = discordID.category.iapython;
@@ -160,6 +160,15 @@ module.exports = {
                     console.error("error en:",error)
                 }
             }
+
+            // Eliminar canal despues de X tiempo
+
+            setTimeout(() => {
+                for (let i = 0; i < idChannels.length; i++) {
+                    const channelActivo = guild.channels.cache.get(idChannels[i])
+                    channelActivo.delete("Tiempo de sala agotado")
+                }
+            }, 60 * 60 * 1000)
 
 
             //
