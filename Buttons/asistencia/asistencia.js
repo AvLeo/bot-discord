@@ -28,7 +28,7 @@ module.exports = {
                 valueAsistencia = await setAsistencia("Python", userID)
                 break;
             case "Python":
-                valueAsistencia = await setAsistencia("Javascript", userID)
+                valueAsistencia = await setAsistencia("Python", userID)
                 break;
             case "C#":
                 valueAsistencia = await setAsistencia("C#", userID)

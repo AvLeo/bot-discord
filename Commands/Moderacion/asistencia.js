@@ -25,7 +25,7 @@ const {
         .setRequired(true)
         .addChoices(
           {name: "JavaScript", value: "JavaScript"},
-          {name: "Base-de-Datos", value: "Base-de-Datos"},
+          {name: "Base de Datos", value: "Base de Datos"},
           {name: "UXUI", value: "UXUI"},
           {name: "Python", value: "Python"},
           {name: "C#", value: "C#"},
@@ -38,8 +38,8 @@ const {
           .setDescription("Selecciona la comision correspondiente")
           .setRequired(true)
           .addChoices(
-            {name: "T. Mañana", value: "T. Mañana"},
-            {name: "T. Tarde", value: "T. Tarde"},
+            {name: "T. Mañana", value: "Turno Mañana"},
+            {name: "T. Tarde", value: "Turno Tarde"},
           )
         ),
     /**
@@ -60,7 +60,7 @@ const {
             channel = interaction.guild.channels.cache.get(discordID.channels.javascript) // ID_CANAL
             await setNewDate("Javascript", fecha, comision)
             break;
-          case "Base-de-Datos":
+          case "Base de Datos":
             channel = interaction.guild.channels.cache.get(discordID.channels.baseDeDatos) // ID_CANAL
             await setNewDate("Base de Datos", fecha, comision)
             break;
@@ -105,14 +105,14 @@ const {
         
         const comp = new ActionRowBuilder().addComponents(button)
 
-        const msg  =await channel.send({embeds: [embed], files:[image], components:[comp]})
-        await interaction.editReply({content:'El mensaje fue enviado correctamente! En 30min debería deshabilitarse', ephemeral: true})
+        const msg  =await channel.send({files:[image], components:[comp]})
+        await interaction.editReply({content:'El mensaje fue enviado correctamente! En 10min debería deshabilitarse', ephemeral: true})
         
         
         setTimeout(async () => {
           button.setDisabled(true)
           const disabledActionRow = new ActionRowBuilder().addComponents(button);
           await msg.edit({components: [disabledActionRow]});
-        }, 30 * 60 * 1000);        
+        }, 10 * 60 * 1000);        
     },
   };
