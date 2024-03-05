@@ -99,8 +99,8 @@ async function setIdDiscord(Curso, dni, idDiscord, userName){
 async function setNewDate(Curso, fecha, comision){
     try {
         let hojasSheet = ''
-        if(comision.toLowerCase() === 't. mañana') hojasSheet = `A2:AD2` 
-        if(comision.toLowerCase() === 't. tarde') hojasSheet = `A125:AD125` 
+        if(comision.toLowerCase() === 'turno mañana') hojasSheet = `A2:AD2` 
+        if(comision.toLowerCase() === 'turno tarde') hojasSheet = `A125:AD125` 
         
         const res = await sheets.spreadsheets.values.get({
             spreadsheetId: IDSpreedSheet,
