@@ -19,7 +19,6 @@ client.buttons = new Collection();
 loadEvents(client)
 loadButtons(client)
 
-
 require('./Handlers/anti-crash.js')(client)
 
 client.login(client.config.token)
