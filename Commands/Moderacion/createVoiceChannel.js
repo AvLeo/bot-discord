@@ -25,7 +25,8 @@ module.exports = {
                     { name: "IA Python", value: "IA Python" },
                     { name: "C#", value: "C#" },
                     { name: "React", value: "React" },
-                    { name: "Java", value: "Java" }
+                    { name: "Java", value: "Java" },
+                    { name: "UX UI", value: "UX UI" }
                 )
                 .setRequired(true)
         )
