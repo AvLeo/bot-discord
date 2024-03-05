@@ -28,6 +28,7 @@ module.exports = {
             const channelActive = client.channels.cache.get(channel);
             channelActive.delete()
           })
+          console.log('Se eliminaron los canales de voz en Alumnos')
         }else{
           console.log("No hay canales de voz activos en Alumnos")
         }
