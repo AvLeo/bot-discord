@@ -20,7 +20,7 @@ async function setAsistencia(Curso,idDiscord) {
 
         const res = await sheets.spreadsheets.values.get({
             spreadsheetId: IDSpreedSheet,
-            range: `${Curso}!A1:Z99`, // Rango de celdas que quieres leer
+            range: `${Curso}!A1:AD245`, // Rango de celdas que quieres leer
         });
 
         let idFecha = -1;
@@ -50,7 +50,7 @@ async function setAsistencia(Curso,idDiscord) {
 
         await sheets.spreadsheets.values.update({
             spreadsheetId: IDSpreedSheet,
-            range: `${Curso}!A1:Z99`,
+            range: `${Curso}!A1:AD245`,
             valueInputOption: "RAW",
             requestBody: { values: nuevosValores }
         });
@@ -67,7 +67,7 @@ async function setIdDiscord(Curso, dni, idDiscord, userName){
     try{
         const res = await sheets.spreadsheets.values.get({
             spreadsheetId: IDSpreedSheet,
-            range: `${Curso}!A1:Z99`,
+            range: `${Curso}!A1:AD245`,
         });
 
         const id = res.data.values.findIndex(alumno => alumno[3] === dni)
@@ -84,7 +84,7 @@ async function setIdDiscord(Curso, dni, idDiscord, userName){
 
         await sheets.spreadsheets.values.update({
             spreadsheetId: IDSpreedSheet,
-            range: `${Curso}!A1:Z99`,
+            range: `${Curso}!A1:AD245`,
             valueInputOption: "RAW",
             requestBody: { values: nuevosValores }
         });
@@ -99,8 +99,8 @@ async function setIdDiscord(Curso, dni, idDiscord, userName){
 async function setNewDate(Curso, fecha, comision){
     try {
         let hojasSheet = ''
-        if(comision.toLowerCase() === 't. mañana') hojasSheet = `A2:Z2` 
-        if(comision.toLowerCase() === 't. tarde') hojasSheet = `A64:Z64` 
+        if(comision.toLowerCase() === 't. mañana') hojasSheet = `A2:AD2` 
+        if(comision.toLowerCase() === 't. tarde') hojasSheet = `A125:AD125` 
         
         const res = await sheets.spreadsheets.values.get({
             spreadsheetId: IDSpreedSheet,
