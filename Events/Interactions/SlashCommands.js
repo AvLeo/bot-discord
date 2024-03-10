@@ -84,7 +84,7 @@ module.exports = {
         }
 
         if(res === undefined){
-          await interaction.member.roles.add(idRolCurso).then(res => console.log("Rol Agregado")).catch(error =>console.log("No se asigno el rol"))
+          await interaction.member.roles.add(idRolCurso).then(res => console.log(`Rol Agregado - ${resCurso} para: ${userName}`)).catch(error =>console.log("No se asigno el rol"))
             await interaction.editReply({content: "Rol asignado", ephemeral: true})
             await wait(3_000)
         }else if(res === "Curso no encontrado"){
