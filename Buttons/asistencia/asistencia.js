@@ -5,13 +5,14 @@ const {
 const wait = require('node:timers/promises').setTimeout;
 const { setAsistencia } = require('../../Spreedsheets/spreedsheets.js')
 const { format } = require('@formkit/tempo') 
-const date = new Date()
 
 module.exports = {
     data : {
         name: `asistencia`,
     },
     async execute (interaction, client){
+        const date = new Date()
+
         
         await interaction.deferReply({ephemeral: true})
         const userID = interaction.user.id
@@ -25,7 +26,7 @@ module.exports = {
                 valueAsistencia = await setAsistencia("Javascript", userID)
                 break;
             case "Base de Datos":
-                valueAsistencia = await setAsistencia("Python", userID)
+                valueAsistencia = await setAsistencia("Base de Datos", userID)
                 break;
             case "Python":
                 valueAsistencia = await setAsistencia("Python", userID)

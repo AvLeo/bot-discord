@@ -16,6 +16,8 @@ const sheets = google.sheets({ version: "v4", auth: auth });
 
 async function setAsistencia(Curso,idDiscord) {
     try {
+        const date = new Date()
+        const fechaActual = format(date, "short", "es")
         let value = false
 
         const res = await sheets.spreadsheets.values.get({
