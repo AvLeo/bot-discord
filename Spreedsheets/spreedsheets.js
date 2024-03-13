@@ -57,7 +57,7 @@ async function setAsistencia(Curso,idDiscord) {
             requestBody: { values: nuevosValores }
         });
 
-        console.log("Datos actualizados correctamente.");
+        console.log(`Asistencia cargada para | ${idDiscord} - ${Curso} - ${fechaActual} `);
 
         return value
     } catch (error) {
@@ -90,9 +90,6 @@ async function setIdDiscord(Curso, dni, idDiscord, userName){
             valueInputOption: "RAW",
             requestBody: { values: nuevosValores }
         });
-
-        console.log('Rol Asigned - Datos cargados en sheet')
-
     }catch(error){
         console.error("SetIdDiscord: Error al leer o actualizar datos:", error);
     }
@@ -122,7 +119,7 @@ async function setNewDate(Curso, fecha, comision){
             requestBody: { values: nuevosValores }
         });
 
-        console.log("Fecha cargada correctamente.");
+        console.log(`Fecha cargada correctamente en ${Curso} - ${fecha} - ${comision}.`);
     } catch (error) {
         console.error("SetFecha: Error al leer o actualizar datos:", error);
     }
