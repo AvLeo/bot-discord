@@ -64,7 +64,7 @@ module.exports = {
                 case "Python":
                     categoryId = discordID.category.python;
                     idRole = discordID.role.python
-                    idChannelMain = discordID.category.python
+                    idChannelMain = discordID.voiceChannelMain.python
                     break;
                 case "IA Python":
                     categoryId = discordID.category.iapython;
@@ -85,6 +85,11 @@ module.exports = {
                     categoryId = discordID.category.uxui;
                     idRole = discordID.role.uxui
                     idChannelMain = discordID.voiceChannelMain.uxui
+                    break;
+                case "React":
+                    categoryId = discordID.category.react;
+                    idRole = discordID.role.react;
+                    idChannelMain = discordID.voiceChannelMain.react
                     break;
                 default:
                     // Handle invalid category selection gracefully
@@ -131,10 +136,11 @@ module.exports = {
                                         PermissionFlagsBits.SendMessages,
                                         PermissionFlagsBits.Stream,
                                         PermissionFlagsBits.ViewChannel,
-                                        PermissionFlagsBits.Speak
+                                        PermissionFlagsBits.Speak,
+                                        PermissionFlagsBits.Connect
                                     ],
                                     deny:[
-                                        PermissionFlagsBits.Connect
+                                        // PermissionFlagsBits.Connect
                                     ]
                                 },
                                 {

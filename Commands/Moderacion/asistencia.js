@@ -12,7 +12,7 @@ const {
   const discordID = require('../../discordID.json')
   const { setNewDate } = require('../../Spreedsheets/spreedsheets.js')
   const { format } = require('@formkit/tempo') 
-  const date = new Date()
+  
 
   module.exports = {
     data: new SlashCommandBuilder()
@@ -47,7 +47,7 @@ const {
      * @param {ChatInputCommandInteraction} interaction
      */
     async execute(interaction) {
-
+        const date = new Date()
         interaction.deferReply({ephemeral: true})
         const fecha = format(date, "short", "es")
 
