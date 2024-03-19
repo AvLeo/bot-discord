@@ -1,6 +1,5 @@
 const { createCanvas, loadImage } = require('canvas');
 const { format } = require('@formkit/tempo') 
-const date = new Date()
 const path = require('path');
 
 const applyText = (canvas, text) => {
@@ -20,6 +19,9 @@ const applyText = (canvas, text) => {
 };
 
 async function createImage(Curso, Comision){
+    
+    const date = new Date()
+
     
     const imagePath = path.join(__dirname,'banner.svg')
     const canvas = createCanvas(1920, 768);
